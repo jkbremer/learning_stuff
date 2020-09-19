@@ -14,12 +14,12 @@ published : true
 # Plugins
 charts : true
 mathjax : TeX-AMS_HTML-full
-
+mathjax : TeX-MML-AM_HTMLorMML-full
 # PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-START
 theme            : template
 theme-background : [ "#172A3B" ]
 theme-headline   : [ "Raleway", "#A6AFE3", "none", "#FFFFFF", "89", "120", "15" ]
-theme-byline     : [ "Raleway", "#FFFFFF", "none", "#A6AFE3", "100", "110", "15" ]
+theme-byline     : [ "Raleway", "#FFFFFF", "none", "#A6AFE3", "99", "110", "15" ]
 theme-text       : [ "Ubuntu", "#FFFFFF", "none", "#F9F871", "100", "100", "15" ]
 theme-links      : [ "#74FAA8", "#5254F7" ]
 theme-code       : [ "Source Code Pro", "100", "120" ]
