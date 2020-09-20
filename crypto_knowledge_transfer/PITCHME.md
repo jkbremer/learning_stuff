@@ -40,7 +40,6 @@ Die Wissenschaft der **Verschlüsselung**
 - Bei Obfuscation geht es nur darum Dinge **unverständlicher** zu machen
 - Für Computer leicht drüber hinwegzusehen, für Menschen schwer
 - Keine gute Sicherheitsmaßnahme
-- Beispiel: AD supplementalCredentials werden obfuscated übertragen, damit in network traces nicht klar erkennbar ist, dass es Credentials sind.
 @olend
 @snapend
 
@@ -48,15 +47,13 @@ Die Wissenschaft der **Verschlüsselung**
 ### Hash
 
 @snap[west-south span-100]
-@ol[list-spaced-bullets text-07](false)
+@ol[list-spaced-bullets text-08](false)
 - Im Gegensatz zur Verschlüsselung eine mathematische **Einwegsfunktion**
     - Das heißt, man kann aus einem Hash **nicht** die originalen Daten rekonstruieren
 - Verwendungszweck meist in Kombination mit Verschlüsselung
-- Problem: Wurde ein Passwort zu einem Passworthash ermittelt, sind dann alle aufgeflogen die dieses Passwort verwenden?
-- **Rainbowtables** mappen Worte zu Hashes, die häufigsten sind also bekannt
+- **Rainbowtables** sind Tabellen, in denen die Hashes von häufigen Passwörtern eingetragen sind
 - Damit diese Rainbowtables nicht funktionieren **saltet** man
-- Hashfunktionen können **Kollisionen** haben
-- Kollision heißt es exisieren mehrere Wörter, die den gleichen Hash erzeugen
+- Beispiel: **MD5** und **SHA**
 @olend
 @snapend
 
@@ -69,9 +66,10 @@ Die Wissenschaft der **Verschlüsselung**
 - Dabei ist es nicht wichtig, dass der Salt geheim ist, nur dass er bei **jedem Benutzer unterschiedlich** ist.
 - Durch die Zuführung eines Saltes, kann man den Hash nicht mehr in Rainbowtables nachsehen.
 - Und gleiche Passwörter anhand der Gleichheit des Hashes erkennen.
-- Beispiel: Bei Kerberos ist der default salt **username@DOMAINNAME**
-- krb5key =  Salt + Hashfunktion(Salt+Pwd)
 @olend
+@snapend
+@snap[south span-15]
+@img[shadow](assets/img/salt.png)
 @snapend
 
 ---
@@ -105,13 +103,39 @@ Die Wissenschaft der **Verschlüsselung**
 @snap[west-south span-100]
 @ol[list-spaced-bullets text-08](false)
 - Bei der Stromchiffre wird **jeder Klartextbit einzeln** verschlüsselt
-   - Es gibt keinen (automatischen) Integritätsschutz
+   - Dafür wird **XOR** als einzige balancierter boolscher Operator verwendet
    - Beispiel: **RC4**
 - Bei der Blockchiffre wird immer ein ganzer **Block Klartextbits gleichzeitg** verschlüsselt
    - Die statistischen Eigenschaften bleiben im Chiffrat erhalten
-   - Beispiel: **DES**, **AES**
-   - meistens werden Blockchiffren genutzt
+   - Die Algrithmen arbeiten iterativ
+   - Beispiel: **DES** und **AES**
 @olend
+@snapend
+@snap[south span-100]
+@img[shadow](assets/img/DES.png)
+@snapend
+
+---
+### Betriebsmodi
+@snap[west span-100 text-06]
+@ol[list-spaced-bullets](false)
+- Meistens werden mehr als nur ein Block von 64/128 Bit verschlüsseln sondern **mehrere Blöcke**
+- Wie diese Blöcke verknüpft werden entscheidet der **Betriebsmodus**
+- Beispielsweise **ECB** Electronic-Codebook-Modus ist vollständig deterministisch.
+- **CBC** Cipher-Block-Chaining-Modus verkettet die verschlüsselten Blöcke und umgeht dieses Phänomen so
+@olend
+@math
+`\[y_1 = e_k(x_i \oplus IV)\]`
+`\[y_i = e_k(x_i \oplus y_{i-1}), i \geq 2\]`
+@mathend
+@snapend
+@snap[south span-100]
+@snap[west span-100]
+@img[shadow](assets/img/pingu1.png)
+@snapend
+@snap[east span-100]
+@img[shadow](assets/img/pingu2.png)
+@snapend
 @snapend
 
 ---
@@ -119,11 +143,10 @@ Die Wissenschaft der **Verschlüsselung**
 #### **Public-Key-Kryptografie**
 
 @snap[west-south span-100]
-@ol[list-spaced-bullets text-06](false)
+@ol[list-spaced-bullets text-07](false)
 - Hier gibt es **zwei verschiedene** Schlüssel, einen **verschlüsselnden** und einen **entschlüsselnden**
 - Diese Schlüssel werden auch **public key** und **private key** genannt
 - Der public key **muss nicht geheim gehalten** werden
-- Diese Verschlüsselungsalgorithmen basieren darauf, dass es Prinzipien gibt, die für Computer leicht zu errechnen sind, deren Inverse allerdings sehr schwer zu berrechnen ist.
 - Man nennt dies auch **Einwegsfunktionen** die im Grunde **injektive** Abbildungen sind
 - Wird oft nur für **Signaturen** und zum **Schlüsselaustausch** verwendet
 @olend
@@ -138,6 +161,7 @@ Die Wissenschaft der **Verschlüsselung**
 - Nur mit asymmetrischen Keys kann **signiert** werden
 - Asymmetrische Keys müssen **sehr lang** sein um ähnlich sicher wie symmetrische Keys zu sein
 - Symmetrische Verschlüsselung ist sehr **schnell und effizient**
+- Bei Asymmetrischer Verschlüsselung muss die **authentizität** der public keys gewährleistet werden
 @olend
 @snapend
 
@@ -158,7 +182,7 @@ Die Wissenschaft der **Verschlüsselung**
 @snap[west-south span-100]
 @ol[list-spaced-bullets text-07](false)
 - Ist ein Public Key und verweist darauf
-- Wird von einer **CA - Certificate Authority** "beglaubigt" also einer **trusted third party**
+- Wird von einer **CA - Certificate Authority** "beglaubigt", also einer **trusted third party**
 - Vertrauen der CA ist erforderlich um Sicherheit herzustellen
 - Der Standart ist **X.509v3** und wird auch für **HTTPS** verwendet
 - **HTTPS** steht für **HTTP over SSL bzw. neuer TLS** und verschlüsselt Web-Nachrichten mithilfer solcher Zertifikate
@@ -171,9 +195,9 @@ Die Wissenschaft der **Verschlüsselung**
 
 @snap[west-south span-100]
 @ol[list-spaced-bullets text-07](false)
-- Einführung in DES: https://www.youtube.com/watch?v=H7bvLU-2JUI
-- Buch Kryptografie verständlich
+- Buch Kryptografie verständlich von Christof Paar
 - Kapitel IT-Sicherheit aus "Betriebssysteme" von Tanenbaum
+- Einführung in DES: https://www.youtube.com/watch?v=H7bvLU-2JUI
 @olend
 @snapend
 ---?image=assets/img/code.jpg&opacity=60&position=left&size=45% 100%
