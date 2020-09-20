@@ -203,9 +203,6 @@ Die Wissenschaft der **Verschlüsselung**
 - **Key-Addition-Schicht** , **Byte-Substitution-Schicht**, **Diffusionsschicht**
 @olend
 @snapend
-@snap[south span-100]
-@img[shadow](assets/img/DES.png)
-@snapend
 
 ---
 @snap[north-west span-100]
@@ -228,19 +225,15 @@ Die Wissenschaft der **Verschlüsselung**
 @snapend
 
 ---
-@snap[north-west span-100]
-#### Verschlüsselung mit **CBC Betriebsmodus**
-@ol[list-spaced-bullets text-06](false)
+### Verschlüsselung mit **CBC Betriebsmodus**
+@snap[text-08]
 - Die Blöcke werden im Cipher-Block-Chaining-Modus folgendermaßen verknüpft:
-@olend
 @math
 `\[y_1 = e_k(x_i \oplus IV)\]`
 `\[y_i = e_k(x_i \oplus y_{i-1}), i \geq 2\]`
 @mathend
-@ol[list-spaced-bullets text-06](false)
 - In der **ersten Runde** wird mit einer **Nonce** verknüpft, einer Pseudo-Zufallszahl und dann die **Verschlüsselunsfunktion e** mit **Rundenschlüssel k** ausgeführt
 - In jeder darauffolgenden Runde wird der zuvor verschlüsselte Block mit dem neuen Klartextblock per XOR verknüpft und **dann** mit e verschlüsselt
-@olend
 @snapend
 
 ---
@@ -253,18 +246,71 @@ Die Wissenschaft der **Verschlüsselung**
 - Diese Schlüssel werden auch **public key** und **private key** genannt
 - Der public key **muss nicht geheim gehalten** werden
 - Diese Verschlüsselungsalgorithmen basieren darauf, dass es Prinzipien gibt, die für Computer leicht zu errechnen sind, deren Inverse allerdings sehr schwer zu berrechnen ist.
+- Man nennt dies auch **Einwegsfunktionen** die im Grunde **injektive** Abbildungen sind
 - Wird oft nur für **Signaturen** und zum **Schlüsselaustausch** verwendet
 @olend
 @snapend
 
 ---
+### Asymmetrische Verschlüsselung
+#### **Diffie-Hellmann-Schlüsselübergabe**
+@snap[west-south span-100 text-06]
+@ol[list-spaced-bullets](false)
+- Der symmetrische Schlüssel für die Kommunikation wird über einen **unsicheren Kanal gesichert übertragen**
+- Basiert auf dem **Diskreten-Logarithmus-Problem**
+- Vorgegeben sind eine Primzahl **p** und eine natürliche Zahl **x**
+- Es ist sehr einfach
+@olend
+@math
+`\[ x^{a} \mod p\]`
+@mathend
+@ol[list-spaced-bullets ](false)
+- zu errechnen. Jedoch ist es sehr schwierig aus aus dem Ergebnis **a** zu errechnen. Dies wird sich hier zu Nutze gemacht
+- **TODO GRAFIK**
+@olend
+@snapend
+---
+### Asymmetrische Verschlüsselung
+#### **RSA**
+
+@snap[west-south span-100 text-07]
+@ol[list-spaced-bullets](false)
+- Das meistgebrauchte asymmetrische Verfahren (Beispiel: ssh-keys)
+- Die genutzte **Einwegfunktion** ist die Multiplikation von Primazahlen
+- Es ist **einfach zwei große Primzahlen zu multiplizieren**, jedoch **sehr schwer aus dem Produkt wieder die beiden Primzahlen zu errechnen**
+- **TODO Grafik**
+@olend
+@snapend
+---
 ### RSA
 
-@snap[west-south span-100]
-@ol[list-spaced-bullets text-08](false)
-- Das meistgebrauchte asymmetrische Verfahren (Beispiel: ssh-keys)
-- 
+@snap[west-south span-100 text-05]
+@ol[list-spaced-bullets](false)
+- Es werden zwei Primzahlen **p** und **q** gewählt und das Produkt **pq** errechnet
+- Außerdem bestimmt man die Zahl
 @olend
+@math
+`\[m = (p-1)(q-1)\]`
+@mathend
+@ol[list-spaced-bullets](false)
+- **pq** ist öffentlich verfügbar, während **p**, **q** und **m** geheim bleiben, denn **m** ist aus **pq** nur schwer zu bestimmen
+- Nun legen wir einen öffentlichen Schlüssel **e** fest, der **teilerfremd** zu **m** sein muss. Der private Schlüssel **d** ist die Lösung von
+@olend
+@math
+`\[ed \equiv 1 \mod m\]`
+@mathend
+@ol[list-spaced-bullets](false)
+- Will man nun die **geheime Botschaft x** verschlüsseln rechnet man
+@olend
+@math
+`\[y=x^e \mod pq\]`
+@mathend
+@ol[list-spaced-bullets](false)
+- Wobei **y** die verschlüsselte Nachricht ist. Zum **entschlüsseln von y** errechnet man
+@olend
+@math
+`\[x = y^d \mod pq\]`
+@mathend
 @snapend
 
 ---
@@ -286,6 +332,8 @@ Die Wissenschaft der **Verschlüsselung**
 @ol[list-spaced-bullets text-06](false)
 - Soll **Zurechenbarkeit** und **Nichtabstreitbarkeit** erreichen, ähnlich eine gewöhnlichen Signatur
 - Kann nur durch asymmetrische Verschlüsselung zustande kommen
+- Dabei geht es **nicht um Verschlüsselung** der Nachricht. Nachrichten können signiert sein, ohne verschlüsselt zu sein
+- **RSA-Signatur** wird häufig verwendet und basiert auf **RSA-Verschlüsselung**
 @olend
 @snapend
 
@@ -297,7 +345,6 @@ Die Wissenschaft der **Verschlüsselung**
 - Einführung in DES: https://www.youtube.com/watch?v=H7bvLU-2JUI
 - Buch Kryptografie verständlich
 - Kapitel IT-Sicherheit aus "Betriebssysteme" von Tanenbaum
-- **oh shit, git** https://ohshitgit.com/
 @olend
 @snapend
 ---?image=assets/img/code.jpg&opacity=60&position=left&size=45% 100%
