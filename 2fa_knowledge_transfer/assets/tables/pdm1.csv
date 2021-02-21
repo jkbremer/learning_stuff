@@ -1,0 +1,11 @@
+**Attacke**, **Ist die Passwort-Qualität relevant**
+ , 
+Credential Stuffing, **Nein** -  der Angreifer hat das Passwort
+Phishing, **Nein** - der Nutzer übergibt sein Passwort dem Angreifer
+Keystroke logging, **Nein** - die Schadsoftware ermittelt das Passwort
+Local discovery, **Nein** - Passwort wurde gefunden
+Channel jacking, **Nein** - Passwort wird abgefangen
+Password spray, **Ja**
+Brute force, **Ja**
+ , 
+

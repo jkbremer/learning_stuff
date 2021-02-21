@@ -1,0 +1,33 @@
+# Layout
+layout : top-left
+
+# Look-and-Feel
+theme-builder: true
+theme-override : assets/css/PITCHME.css
+logo : assets/images/logo.png
+highlight : ir-black
+
+# Behavior
+transition : none
+published : true
+
+# Plugins
+charts : true
+mathjax : TeX-AMS_HTML-full
+mathjax : TeX-MML-AM_HTMLorMML-full
+
+# PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-START
+theme            : template
+theme-background : [ "#1E5C97" ]
+theme-headline   : [ "Raleway", "#74FAA8", "none", "#74FAA8", "89", "120", "15" ]
+theme-byline     : [ "Raleway", "#FFFFFF", "none", "#74FAA8", "99", "110", "15" ]
+theme-text       : [ "Ubuntu", "#FFFFFF", "none", "#74FAA8", "100", "100", "15" ]
+theme-links      : [ "#74FAA8", "#5254F7" ]
+theme-code       : [ "Source Code Pro", "100", "120" ]
+highlight        : atom-one-dark
+theme-controls   : [ "#C0C0C0" ]
+theme-margins    : [ "0", "15px" ]
+logo             : assets/img/lock.png
+logo-position    : top-left
+layout           : top-left
+# PITCHME-DOT-YAML-SETTINGS-THEME-BUILDER-GENERATED-END
