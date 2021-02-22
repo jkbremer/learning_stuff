@@ -21,15 +21,15 @@ Univention GMBH
 @olend
 @snapend
 
-@snap[east span-40]
-@img[shadow](assets/img/yubikey.png)
+@snap[east span-60]
+@img[shadow](assets/img/mfa.jpg)
 @snapend
 ---
 ## MFA & 2FA
 @snap[west-south span-60]
 @ol[list-spaced-bullets text-07](true)
 - **MFA**: Mehr als ein Faktoren zur Authentifizierung
-- **2FA**: Genau zwei unabhängige Faktoren
+- **2FA**: Genau zwei Faktoren
 - **Beispiel**: Bankkarte + PIN
 - Man unterscheidet in drei Kategorien
 - **Besitz** (z.B. Smartcard)
@@ -51,12 +51,12 @@ Univention GMBH
 - Passwörter werden **vergessen**
 - Passwörter werden **gestohlen**
 - Passwörter werden **gefished**
-- Beliebteste Passwörter 2020: **123456, 12345678, password**
 - 43% Erfolgsrate bei guten **Phishing-Seiten**
+- Beliebteste Passwörter 2020: **123456, 12345678, password**
 @olend
 @snapend
 @snap[east span-50]
-@img[shadow](assets/img/pwnd.jpg)
+@img[shadow](assets/img/fish.png)
 @snapend
 
 ---
@@ -66,12 +66,13 @@ Univention GMBH
 @table[Does your Password matter?](assets/tables/pdm1.csv)
 @snapend
 ---
-## **OATH OTP: One Time Passwords**
+## **OTP: One Time Passwords**
 
 @snap[west-south span-70]
 @ol[list-spaced-bullets text-06](true)
 - **T**ime based **OTP**
 - **TOTP** ist eine **Erweiterung von HOTP**
+- Die meisten Arten von 2fa nutzen **TOTP**
 - verwendet **symmetrische** Verschlüsselung
 - geheimer Schlüssel wird mit einem Zeitintervall zusammen **gehasht**
 - Früher meist mithilfe eines Hardware-Authenticator
@@ -99,18 +100,18 @@ Univention GMBH
 - Können auf jedem **Smartphone** laufen
 - Uhren müssen **synchron** sein
 - **Komfortabel**, da die meisten ein Smartphone haben
-- Setup meist durch **QR-Code**, um der App das Schlüssel zu übertragen
+- Setup meist durch **QR-Code**, um der App den Schlüssel zu übertragen
 @olend
 @snapend
 @snap[south-east span-40]
 @img[shadow](assets/img/googlauth.jpg)
 @snapend
 
----
+---?image=assets/img/fingerprint.jpg&opacity=100&position=right&size=50%
 ## **Biometrische Daten**
 
 @snap[west-south span-80]
-@ol[list-spaced-bullets text-07](true)
+@ol[list-spaced-bullets text-06](true)
 - Authentifikation mithilfe **inherenter Biomarkern**
 - z.B. Gesicht, Stimme, Iris, Fingerabdruck
 - Beispiel: **Windows hello**
@@ -118,11 +119,8 @@ Univention GMBH
 - Bild der Biometrie wird gemacht, abstrahiert und verglichen mit den vorliegenden Daten
 - **Ähnlichkeit** wird verglichen
 - Hohe **Fehlerrate**
-- Leicht zu **Fälschen**
+- Leicht zu **fälschen**
 @olend
-@snapend
-@snap[south-east span-40]
-@img[shadow](assets/img/fingerprint.jpg)
 @snapend
 
 ---
@@ -139,22 +137,21 @@ Univention GMBH
 @snapend
 
 ---
-## **FIDO Security Key**
+## **Security Keys**
 
 @snap[west-south span-70]
 @ol[list-spaced-bullets text-06](true)
-- FIDO-Protokolle erstellt von der **FIDO-Allianz**
-- FIDO =**F**ast **ID**entitiy **O**nline
-- Ziel: **Offene Standards** definieren
-- verwendet **asymmetrische Verschlüsselung**
-- Ein Authenticator für viele Services
-- Alle Smartphones ab **Android 7** sind selbst Security Keys
-- Muss durch **Nutzeraktion** aktiviert werden (Drücken des Buttons)
-- generiert bei **Registrierung** ein neues Schlüsselpaar
+- USB-Token (bluetooth, nfc ebenfalls möglich)
+- Key storage devices
+- verwenden **asymmetrische Verschlüsselung**
+- Vor Verwendung muss ein Key **registriert** werden
+- Dabei wird ein **neues Schlüsselpaar erzeugt**
+- **Mehrere Schlüssel** pro Karte/Token speicherbar
+- Token oftmals **selbst durch PIN/Biometrie gesichert**
 @olend
 @snapend
-@snap[south-east span-30]
-@img[shadow](assets/img/fido-u2f.png)
+@snap[north-east span-20]
+@img[shadow](assets/img/yubikey.png)
 @snapend
 
 ---
@@ -168,6 +165,23 @@ Univention GMBH
 @snapend
 
 ---
+## FIDO2
+@snap[west-south span-70]
+@ol[list-spaced-bullets text-06](true)
+- FIDO-Protokolle erstellt von der **FIDO-Allianz** (Google, Paypal, RSA, Amazon, Facebook, Visa, Samsung, Apple....)
+- FIDO =**F**ast **ID**entitiy **O**nline
+- Ziel: **Offene Standards** definieren
+- verwendet **asymmetrische Verschlüsselung**
+- Ein Authenticator für viele Services
+- Alle Smartphones ab **Android 7** sind selbst Security Keys für FIDO2
+- Muss durch **Nutzeraktion** aktiviert werden (Drücken des Buttons)
+- generiert bei **Registrierung** ein neues Schlüsselpaar
+@olend
+@snapend
+@snap[east span-40]
+@img[shadow](assets/img/webauthn-logo.png)
+@snapend
+---
 ## **FIDO2**
 @snap[west-south span-100 text-06]
 @ol[list-spaced-bullets](true)
@@ -175,59 +189,44 @@ Univention GMBH
 - Authenticator generiert bei Registrierung ein **neues Schlüsselpaar**
 - verwendet RSA/ECDSA P-256 (Elliptic Curve Digital Signature Algorithm)
 - Server schickt Challenge an Authenticator zum verifizieren
-- Authenticator schickt Antwort, Authentifizierung abgeschlossen
-- Testbar auf https://webauthn.io/
+- Authenticator schickt Signatur der Challenge
+- Testbar auf https://webauthn.io/ und https://webauthn.me/
+@olend
+@snapend
+@snap[south span-60]
+@img[shadow](assets/img/fido2.png)
+@snapend
+---
+## FIDO2
+@snap[west-south span-100 text-08]
+@ol[list-spaced-bullets](true)
+1. Service und Web-application kommunizieren per WebAuthn-API mit dem Browser
+1. Browser kommunziert per CTAP mit dem Token
+1. Service erzeugt zufällige Challenge
+1. Token signiert Challenge
+1. Private Key wird bei Registrierung abhängig von der **ClientID** 
 @olend
 @snapend
 
----
-## FIDO2 - Registrierung
-@snap[west span-100 text-05]
-@img[shadow](assets/img/fido2-register.png)
-@snapend
-@snap[south-east span-100 text-04]
-@ol[list-spaced-bullets](true)
-1. Service schickt Optionen zur Erstellung eines neuen Schlüsselpaares +Challenge
-1. Browser erstellt ClientData mit Informationen über Browser und Client,Challenge und RP-ID
-1. Nutzer verifiziert seine Anwesenheit indem er den Button drückt, Authenticator kreiert PKCS
-1. Authentictor schickt attestationObject mit dem publicKey u. attestationStatement
-1. Browser erstellt clientData, leitet attestatioObject weiter, Registrierung erfolgreich, prüft ob clientData korrekt
-@olend
----
-## FIDO2 - Registrierung
-@snap[south-west span-100 text-06]
-@ol[list-spaced-bullets](true)
-- Authenticator generiert bei Registrierung ein **neues Schlüsselpaar**
-- Überträgt public key zum Server
-- Server schickt Challenge an Authenticator zum verifizieren
-- Autehnticator schickt Antwort, Authentifizierung abgeschlossen
-@olend
-@snapend
----
-## FIDO2 - Authentifizierung
-@img[shadow](assets/img/fido2-auth.png)
----
-## FIDO2 - Authentifizierung
-@snap[west-south span-100 text-06]
-@ol[list-spaced-bullets](true)
-@olend
-@snapend
+---?image=assets/img/fido2-register.png&opacity=100&position=bottom&size=100% 85%
+### **FIDO2 - Registrierung**
+---?image=assets/img/fido2-auth.png&opacity=100&position=center&size=100% 75%
+### **FIDO2 - Authentifizierung**
 
 ---
 ## FIDO2 - Vulnerabilities
-@snap[west-south span-100 text-06]
-Anfälligkeit für Häufige Angriffsvektoren:
+@snap[west-south span-100 text-05]
+## Anfälligkeit für häufige Angriffsvektoren:
 @ol[list-spaced-bullets](true)
-- **Phishing: Nein** der Schlüssel speichert eine ClientID, weicht diese ab kann keine Authentifizierung statt finden
+- **Phishing: Nein** der Schlüssel speichert eine Relying Party ID (domainname), weicht diese ab kann keine Authentifizierung statt finden
 - **Replay Attack: Nein** aufgrund der zufällig generierten Challenge
 - **Key-Logger: Nein** es muss nichts eingetippt werden
 - **Data Breach: Nein** es wird lediglich ein Public Key gespeichert
 @olend
-Mögliche Angriffsvektoren:
+## Mögliche Angriffsvektoren:
 @ol[list-spaced-bullets](true)
-- **Diebstahl** des Key
-- **Unsicher Account Reaktivierung**: Bei Verlust fällt der Anbieter auf Passwort-Authentifizierung zurück
-- Erwerben eines **Gefälschten** Security Keys
+- Über **Diebstahl** des Keys
+- Über **unsichere Account Reaktivierung**: Bei Verlust fällt der Anbieter auf Passwort-Authentifizierung zurück
 @olend
 @snapend
 
@@ -252,6 +251,7 @@ Mögliche Angriffsvektoren:
 @ol[list-spaced-bullets text-06](false)
 - FIDO2, WebAuthn und CTAP. Wie gelingt Authentisieren ohne Passwörter?, Marc Kasberger, Studienarbeit
 - CTAP specs: https://fidoalliance.org/specs/fido-v2.0-ps-20190130/fido-client-to-authenticator-protocol-v2.0-ps-20190130.pdf
+- Phishing as a Science: https://www.youtube.com/watch?v=Z20XNp-luNA
 - https://techcommunity.microsoft.com/t5/azure-active-directory-identity/your-pa-word-doesn-t-matter/ba-p/731984
 - https://techcommunity.microsoft.com/t5/itops-talk-blog/ops108-windows-authentication-internals-in-a-hybrid-world/ba-p/2109557?WT.mc_id=ModInfra-12977-rclaus
 - Build your first WebAuthn App (Google): https://codelabs.developers.google.com/codelabs/webauthn-reauth#0

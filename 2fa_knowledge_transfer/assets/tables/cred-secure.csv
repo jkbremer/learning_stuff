@@ -4,5 +4,5 @@ PIN, yes, yes, yes
 Server transmitted OTP, yes, yes, yes
 OTP, yes, no, yes
 Authenticator Applications, yes, no, yes
-Smartcards, no, no, no
+Biometrics, no, no, yes(?)
 FIDO(2) Security Key, no, no, no
